@@ -1,0 +1,23 @@
+{
+  "title": "Code and stored results: choosing the exponent of a fractional power basis in adaptive robust regression",
+  "upload_type": "software",
+  "description": "<p>Python and R scripts, stored Monte Carlo replications and a Lean 4 project behind the article <em>Choosing the exponent of a fractional power basis in adaptive robust regression</em> (S. Zabolotnii) and its online supplement.</p><p>The estimator is a one-step regression estimator on a four-column fractional power basis of a robust generating element, whose exponent is chosen on a finite grid by the estimated asymptotic variance. <code>paper/make_tables.py</code> and <code>paper/make_supplement.py</code> regenerate every table of the article and the supplement from the stored results without new simulation. The Lean project machine-checks the deterministic steps of the selection theorem.</p>",
+  "creators": [
+    {
+      "name": "Zabolotnii, Serhii",
+      "affiliation": "Cherkasy State Business College",
+      "orcid": "0000-0003-0242-2234"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "robust regression",
+    "adaptive estimation",
+    "polynomial maximization method",
+    "fractional power basis",
+    "M-estimation",
+    "Monte Carlo",
+    "Lean 4"
+  ]
+}

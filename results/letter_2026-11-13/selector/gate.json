@@ -1,0 +1,123 @@
+{
+  "ok": true,
+  "project": ".",
+  "lib": "TauPATP",
+  "gates": {
+    "G1_statements_frozen": {
+      "pass": true,
+      "problems": []
+    },
+    "G1b_statements_kernel": {
+      "enforced": false,
+      "ran": false,
+      "pass": null,
+      "note": "not run — pass --comparator (needs comparator, landrun and lean4export on PATH) or --comparator-log F"
+    },
+    "G2_build_clean": {
+      "pass": true,
+      "errors": []
+    },
+    "G3_no_sorry": {
+      "pass": true,
+      "sorries": []
+    },
+    "G4_axioms_standard": {
+      "pass": true,
+      "audited": 16,
+      "nonstandard": {}
+    },
+    "G5_witness_coverage": {
+      "enforced": true,
+      "pass": true,
+      "required": 8,
+      "covered": [
+        "selector_oracle",
+        "selector_variance_regret",
+        "selector_oracle_bias_noise",
+        "selector_additive",
+        "selector_consistent",
+        "selector_regret_of_biased_limit",
+        "one_step_pilot_share",
+        "misweighted_variance_bound"
+      ],
+      "missing": [],
+      "exempt": [],
+      "invalid_exemptions": [],
+      "hypothesis_free": [],
+      "witnesses": {
+        "selector_oracle_witness": {
+          "for": "selector_oracle",
+          "file": "Lean/TauPATP/Selector.lean",
+          "statement": "theorem selector_oracle_witness : ∃ (J Jhat : Bool → ℝ) (ε : ℝ) (ahat : Bool), 0 ≤ ε ∧ ε < 1 ∧ (∀ a, 0 < J a) ∧ (∀ a, |Jhat a - J a| ≤ ε * J a) ∧ (∀ a, Jhat a ≤ Jhat ahat)",
+          "hypotheses_echoed": "5/5",
+          "axioms_audited": false
+        },
+        "selector_variance_regret_witness": {
+          "for": "selector_variance_regret",
+          "file": "Lean/TauPATP/Selector.lean",
+          "statement": "theorem selector_variance_regret_witness : ∃ (J Jhat : Bool → ℝ) (ε : ℝ) (ahat : Bool), 0 ≤ ε ∧ ε < 1 ∧ (∀ a, 0 < J a) ∧ (∀ a, |Jhat a - J a| ≤ ε * J a) ∧ (∀ a, Jhat a ≤ Jhat ahat)",
+          "hypotheses_echoed": "5/5",
+          "axioms_audited": false
+        },
+        "selector_oracle_bias_noise_witness": {
+          "for": "selector_oracle_bias_noise",
+          "file": "Lean/TauPATP/Selector.lean",
+          "statement": "theorem selector_oracle_bias_noise_witness : ∃ (J Jdelta Jhat : Bool → ℝ) (εb εn : ℝ) (ahat : Bool), 0 ≤ εb ∧ 0 ≤ εn ∧ εn ≤ 1 ∧ (∀ a, 0 < J a) ∧ (∀ a, |Jdelta a - J a| ≤ εb * J a) ∧ (∀ a, |Jhat a - Jdelta a| ≤ εn * Jdelta a) ∧ (∀ a, Jhat a ≤ Jhat ahat)",
+          "hypotheses_echoed": "7/7",
+          "axioms_audited": false
+        },
+        "selector_additive_witness": {
+          "for": "selector_additive",
+          "file": "Lean/TauPATP/Selector.lean",
+          "statement": "theorem selector_additive_witness : ∃ (J Jhat : Bool → ℝ) (η : ℝ) (ahat : Bool), (∀ a, |Jhat a - J a| ≤ η) ∧ (∀ a, Jhat a ≤ Jhat ahat)",
+          "hypotheses_echoed": "2/2",
+          "axioms_audited": false
+        },
+        "selector_consistent_witness": {
+          "for": "selector_consistent",
+          "file": "Lean/TauPATP/Selector.lean",
+          "statement": "theorem selector_consistent_witness : ∃ (Jlim Jhat : Bool → ℝ) (η : ℝ) (alim ahat : Bool), (∀ a, |Jhat a - Jlim a| ≤ η) ∧ (∀ a, a ≠ alim → Jlim a + 2 * η < Jlim alim) ∧ (∀ a, Jhat a ≤ Jhat ahat)",
+          "hypotheses_echoed": "3/3",
+          "axioms_audited": false
+        },
+        "selector_regret_of_biased_limit_witness": {
+          "for": "selector_regret_of_biased_limit",
+          "file": "Lean/TauPATP/Selector.lean",
+          "statement": "theorem selector_regret_of_biased_limit_witness : ∃ (V Jlim Jhat : Bool → ℝ) (η : ℝ) (alim ahat abest : Bool), (∀ a, |Jhat a - Jlim a| ≤ η) ∧ (∀ a, a ≠ alim → Jlim a + 2 * η < Jlim alim) ∧ (∀ a, Jhat a ≤ Jhat ahat) ∧ V abest < V alim",
+          "hypotheses_echoed": "4/4",
+          "axioms_audited": false
+        },
+        "one_step_pilot_share_witness": {
+          "for": "one_step_pilot_share",
+          "file": "Lean/TauPATP/Selector.lean",
+          "statement": "theorem one_step_pilot_share_witness : ∃ (s c' : ℝ), s ≠ 0 ∧ c' ≠ 0",
+          "hypotheses_echoed": "2/2",
+          "axioms_audited": false
+        },
+        "misweighted_variance_bound_witness": {
+          "for": "misweighted_variance_bound",
+          "file": "Lean/TauPATP/Selector.lean",
+          "statement": "theorem misweighted_variance_bound_witness : ∃ F : Matrix (Fin 1) (Fin 1) ℝ, F.PosDef",
+          "hypotheses_echoed": "1/2",
+          "axioms_audited": false
+        }
+      },
+      "axioms_note": "some witnesses have no `#print axioms` line — add them to the audit file so G4 covers the witness proofs too"
+    },
+    "G5b_auto_implicit_off": {
+      "enforced": true,
+      "pass": true,
+      "lakefile": "lakefile.lean leanOptions/moreLeanArgs",
+      "files_uncovered": [],
+      "files_enabling": []
+    }
+  },
+  "build": {
+    "ran": true,
+    "source": "lake build TauPATP",
+    "exit_code": 0,
+    "errors": [],
+    "sorries": [],
+    "nonstandard_axioms": {}
+  }
+}

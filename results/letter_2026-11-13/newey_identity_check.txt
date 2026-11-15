@@ -1,0 +1,4 @@
+n = 400, k = 4, Gamma(4) + 5% +-10, bisquare pilot, MAD scale
+tau^i, S = 3 (bisquare)      max|ours - Newey (2.9)| = 5.90e-16   max|step from pilot| = 4.26e-02
+(u/(1+|u|))^j, J = 3         max|ours - Newey (2.9)| = 2.50e-16   max|step from pilot| = 1.99e-02
+(u/(1+|u|))^j, J = 6         max|ours - Newey (2.9)| = 1.93e-13   max|step from pilot| = 4.21e-02

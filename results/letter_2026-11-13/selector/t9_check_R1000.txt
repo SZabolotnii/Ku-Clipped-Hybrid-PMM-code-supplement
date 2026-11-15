@@ -1,0 +1,6 @@
+alpha = 0.25, exponents [1.0, 0.6875, 0.5] + tau^2; tau = bisquare; one Newton step; b: symmetric difference, delta = N^(-1/5); R = {2000: 1000, 8000: 600, 32000: 300}
+закон                theory/OLS |                N=2000                N=8000               N=32000
+                                | feasible  fixed-delta feasible  fixed-delta feasible  fixed-delta
+Гаус                      1.038 |      1.020      1.000      0.983      1.000      0.896      1.000
+Лаплас                    0.508 |      1.141      1.054      1.098      1.032      1.010      1.018
+Gamma(4) + 5% ±10         0.111 |      0.998      1.000      0.989      1.000      1.039      1.000

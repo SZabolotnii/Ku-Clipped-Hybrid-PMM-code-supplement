@@ -1,0 +1,50 @@
+GG(0.7): s = 0.5514; bisquare M-estimate / OLS = 0.443; Cramer-Rao / OLS = 0.118
+delta = 0.2 N^(-1/5) in u units
+ideal = s^2/J;  crit = s^2/J_delta (limit of the selection criterion);  real = V_real / OLS
+
+=== N = 2000, delta = 0.0437 ===
+  alpha   0.000   0.125   0.250   0.375   0.625   0.750   0.875   1.000
+  ideal   0.142   0.144   0.150   0.159   0.183   0.197   0.211   0.226
+   crit   0.180   0.179   0.179   0.180   0.192   0.202   0.215   0.228
+   real   0.147   0.148   0.152   0.160   0.183   0.197   0.211   0.226
+    rho  -0.106  -0.098  -0.083  -0.061  -0.024  -0.013  -0.007  -0.004
+criterion selects alpha = 0.25; smallest real variance at alpha = 0.0; lag = 1.038; ideal selection would lose 1.000
+
+=== N = 8000, delta = 0.0331 ===
+  alpha   0.000   0.125   0.250   0.375   0.625   0.750   0.875   1.000
+  ideal   0.142   0.144   0.150   0.159   0.183   0.197   0.211   0.226
+   crit   0.172   0.172   0.172   0.174   0.189   0.200   0.213   0.227
+   real   0.145   0.147   0.151   0.159   0.183   0.197   0.211   0.226
+    rho  -0.089  -0.081  -0.066  -0.046  -0.016  -0.008  -0.005  -0.003
+criterion selects alpha = 0.125; smallest real variance at alpha = 0.0; lag = 1.013; ideal selection would lose 1.000
+
+=== N = 32000, delta = 0.0251 ===
+  alpha   0.000   0.125   0.250   0.375   0.625   0.750   0.875   1.000
+  ideal   0.142   0.144   0.150   0.159   0.183   0.197   0.211   0.226
+   crit   0.166   0.166   0.167   0.170   0.187   0.199   0.213   0.227
+   real   0.144   0.146   0.151   0.159   0.183   0.197   0.211   0.226
+    rho  -0.073  -0.066  -0.051  -0.034  -0.010  -0.005  -0.003  -0.002
+criterion selects alpha = 0.0; smallest real variance at alpha = 0.0; lag = 1.000; ideal selection would lose 1.000
+
+=== N = 1000000, delta = 0.0126 ===
+  alpha   0.000   0.125   0.250   0.375   0.625   0.750   0.875   1.000
+  ideal   0.142   0.144   0.150   0.159   0.183   0.197   0.211   0.226
+   crit   0.155   0.156   0.158   0.164   0.184   0.197   0.212   0.226
+   real   0.142   0.145   0.150   0.159   0.183   0.197   0.211   0.226
+    rho  -0.043  -0.037  -0.027  -0.016  -0.004  -0.002  -0.001  -0.000
+criterion selects alpha = 0.0; smallest real variance at alpha = 0.0; lag = 1.000; ideal selection would lose 1.000
+
+=== N = 100000000, delta = 0.0050 ===
+  alpha   0.000   0.125   0.250   0.375   0.625   0.750   0.875   1.000
+  ideal   0.142   0.144   0.150   0.159   0.183   0.197   0.211   0.226
+   crit   0.147   0.149   0.153   0.160   0.183   0.197   0.211   0.226
+   real   0.142   0.144   0.150   0.159   0.183   0.197   0.211   0.226
+    rho  -0.019  -0.016  -0.010  -0.005  -0.001  -0.000  -0.000  -0.000
+criterion selects alpha = 0.0; smallest real variance at alpha = 0.0; lag = 1.000; ideal selection would lose 1.000
+
+Bias of b_delta, column p = 1/3 (alpha = 0); expected exponent p + beta = 1.033
+delta =  0.080   relative bias = -0.04292
+delta =  0.040   relative bias = -0.02202   local exponent 0.963
+delta =  0.020   relative bias = -0.01111   local exponent 0.987
+delta =  0.010   relative bias = -0.00554   local exponent 1.004
+delta =  0.005   relative bias = -0.00274   local exponent 1.014
