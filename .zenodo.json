@@ -1,7 +1,7 @@
 {
   "title": "Code and stored results: choosing the exponent of a fractional power basis in adaptive robust regression",
   "upload_type": "software",
-  "description": "<p>Python and R scripts, stored Monte Carlo replications and a Lean 4 project behind the article <em>Choosing the exponent of a fractional power basis in adaptive robust regression</em> (S. Zabolotnii) and its online supplement.</p><p>The estimator is a one-step regression estimator on a four-column fractional power basis of a robust generating element, whose exponent is chosen on a finite grid by the estimated asymptotic variance. <code>paper/make_tables.py</code> and <code>paper/make_supplement.py</code> regenerate every table of the article and the supplement from the stored results without new simulation. The Lean project machine-checks the deterministic steps of the selection theorem.</p>",
+  "description": "<p>Python and R scripts, stored Monte Carlo replications and a Lean 4 project behind the article <em>Choosing the exponent of a fractional power basis in adaptive robust regression</em> (S. Zabolotnii) and its online supplement.</p><p>The estimator is a one-step regression estimator on a four-column fractional power basis of a robust generating element, whose exponent is chosen on a finite grid by the estimated asymptotic variance. <code>paper/make_tables.py</code> and <code>paper/make_supplement.py</code> regenerate every table of the article and the supplement from the stored results without new simulation. The Lean project machine-checks the deterministic steps of the selection theorem.</p><p>Version 1.1.0 adds E6, which resamples regression errors from real barometer-minus-GPS residuals of the RflyMAD dataset (Le et al., 2025). The residuals themselves are not included: RflyMAD is licensed for non-commercial use only.</p>",
   "creators": [
     {
       "name": "Zabolotnii, Serhii",
@@ -19,5 +19,14 @@
     "M-estimation",
     "Monte Carlo",
     "Lean 4"
+  ],
+  "version": "1.1.0",
+  "related_identifiers": [
+    {
+      "identifier": "10.1177/02783649241305153",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    }
   ]
 }

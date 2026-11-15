@@ -3,6 +3,7 @@
 Usage (from the track root):  python paper/make_supplement.py
 
 Reads   results/letter_2026-11-13/e7_per_rep/, e5_per_rep/     (per-replication arrays)
+        results/letter_2026-11-15/                              (E6: real barometer noise)
         results/letter_2026-11-13/*.txt, selector/*.txt        (printed tables of earlier runs)
         results/letter_2026-11-12/*.txt, results/generating_2026-11-12/*.txt
 Writes  paper/supplement/tables/*.tex
@@ -27,6 +28,7 @@ RES = os.path.join(ROOT, "results")
 E7 = os.path.join(RES, "letter_2026-11-13", "e7_per_rep")
 E5 = os.path.join(RES, "letter_2026-11-13", "e5_per_rep")
 SEL = os.path.join(RES, "letter_2026-11-13", "selector")
+E6 = os.path.join(RES, "letter_2026-11-15")
 OUT = os.path.join(ROOT, "paper", "supplement", "tables")
 
 FIXED = slice(K0, K0 + len(GRID))
@@ -361,6 +363,55 @@ def e5_table():
         rows))
 
 
+# ---------------------------------------------------------------- E6: real barometer noise
+def e6_table():
+    rows, rows_pair = [], []
+    paths = sorted(glob.glob(os.path.join(E6, "t1_9_*.npy")), key=lambda p: int(os.path.basename(p).split("_")[2]))
+    for p in paths:
+        _, _, n, R = os.path.basename(p)[:-4].split("_")
+        res = np.load(p)
+        apath = os.path.join(E6, f"asm_9_{n}_{R}.txt")
+        asm = np.genfromtxt(apath, skip_header=1)[:, 0] if os.path.exists(apath) else None
+        m = res.mean(0)
+        r = m / m[0]
+        kb = int(np.argmin(m[FIXED]))
+        a = "--"
+        pr = [ratio_se(res[:, IA], res[:, IM]), ratio_se(res[:, IA], res[:, K0 + kb]),
+              ratio_se(res[:, IA], res[:, I1]), ratio_se(res[:, IA], res[:, IT]), ratio_se(res[:, IA], res[:, IW])]
+        if asm is not None:
+            ok = ~np.isnan(asm)
+            a = f3(asm[ok].mean() / res[ok, 0].mean())
+            pr.append(ratio_se(res[ok, IA], asm[ok]))
+            print(f"E6: N={n}, asm failures {int((~ok).sum())} of {len(asm)}")
+        rows.append(f"{n} & {f3(r[IM])} & {f3(r[I1])} & {f3(r[K0 + kb])} ({GRID[kb]:g}) & "
+                    f"{f3(r[IA])} ({m[IAL]:.2f}) & {f3(r[IT])} & {f3(r[IW])} & {a} \\\\")
+        cells_ = [f"{v:.3f} ({s:.3f})" for v, s in pr] + ["--"] * (6 - len(pr))
+        rows_pair.append(f"{n} & " + " & ".join(cells_) + r" \\")
+        print(f"E6: N={n}: selected/M {pr[0][0]:.3f} ({pr[0][1]:.3f}), selected/best fixed {pr[1][0]:.3f}, "
+              f"selected/NwT6 {pr[3][0]:.3f}, selected/NwW6 {pr[4][0]:.3f}"
+              + (f", selected/asm {pr[5][0]:.3f} ({pr[5][1]:.3f})" if len(pr) > 5 else ""))
+    write("e6.tex", rel(E6), tabular(
+        "lccccccc",
+        [r" & & \multicolumn{3}{c}{Fractional basis} & \multicolumn{2}{c}{Newey, $J=6$} & \\",
+         r"\cmidrule(lr){3-5}\cmidrule(lr){6-7}",
+         r"$N$ & M & $a=1$ & best $a$ & selected $\hat a$ & transf. & weighted & \texttt{asm} \\"],
+        rows))
+    write("e6_paired.tex", rel(E6), tabular(
+        "lcccccc",
+        [r"$N$ & M & best fixed $a$ & $a=1$ & Newey transf. & Newey weighted & \texttt{asm} \\"],
+        rows_pair))
+    # The pool is derived from RflyMAD (non-commercial licence) and is not in the public code
+    # archive; the tables above need only the per-replication results.
+    ppath = os.path.join(E6, "e6_pool.npy")
+    if not os.path.exists(ppath):
+        print("E6 pool: e6_pool.npy not present (RflyMAD-derived, not redistributed); tables unaffected")
+        return
+    pool = np.load(ppath)
+    mu, sd = pool.mean(), pool.std()
+    print(f"E6 pool: {len(pool)} residuals, skewness {((pool - mu) ** 3).mean() / sd ** 3:.2f}, "
+          f"excess kurtosis {((pool - mu) ** 4).mean() / sd ** 4 - 3:.1f}, share |e|>5 {np.mean(np.abs(pool) > 5):.3f}")
+
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     e7_tables(load_e7())
@@ -369,4 +420,5 @@ if __name__ == "__main__":
     t9_tables()
     baseline_tables()
     e5_table()
+    e6_table()
     print("tables:", sorted(os.listdir(OUT)))
