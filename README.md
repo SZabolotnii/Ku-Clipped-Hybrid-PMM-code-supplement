@@ -4,6 +4,11 @@ Scripts, stored Monte Carlo replications and the Lean project behind the article
 "Choosing the exponent of a fractional power basis in adaptive robust regression"
 and its online supplement (Appendices A–F).
 
+Archived on Zenodo: release v1.0.0 is
+[doi:10.5281/zenodo.24241609](https://doi.org/10.5281/zenodo.24241609); the concept DOI
+[10.5281/zenodo.24241608](https://doi.org/10.5281/zenodo.24241608) always resolves to the
+latest version.
+
 Every table of the article and of the supplement is produced from the result files stored
 here; the two table scripts never rerun a simulation. Running them regenerates
 `paper/tables/table1.tex` and `paper/supplement/tables/*.tex`, and the output matches the
